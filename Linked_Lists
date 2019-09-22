@@ -14,6 +14,7 @@
 + [Sort List](#sort-list)
 
 ## Reorder List
+
 ```cpp
 class Solution {
 public:
