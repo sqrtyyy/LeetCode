@@ -1,1 +1,58 @@
+# Linked Lists
 
++ [Reorder List](#reorder_list)
++ [Linked List Cycle II](#linked-list-cycle-ii)
++ [Linked List Cycle](#linked-list-cycle)
++ [Merge Two Sorted Lists](#merge-two-sorted-lists)
++ [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
++ [Middle of the Linked List](#middle-of-the-linked-list)
++ [Delete Node in a Linked List](#delete-node-in-a-linked-list)
++ [Palindrome Linked List](#palindrome-linked-list)
++ [Reverse Linked List](#reverse-linked-list)
++ [Remove Linked List Elements](#remove-linked-list-elements)
++ [Intersection of Two Linked Lists](#intersection-of-two-linked-lists)
++ [Sort List](#sort-list)
+
+## reoder_list
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* middle = head;
+        while(head->next){
+            middle = middle->next;
+            head = head->next;
+            if(!head->next)
+                break;
+            head = head->next;
+        }
+        return middle;
+    }
+    ListNode* reverseList(ListNode* head) {
+        ListNode* temp;
+        ListNode* prev = NULL;
+        while(head){
+            temp = head->next;
+            head->next = prev;
+            prev = head;
+            head = temp;
+        }
+        return prev;
+    }
+    void reorderList(ListNode* head) {
+        if(!head || !head->next)
+            return;
+        ListNode* mid = middleNode(head);
+        ListNode* rev = reverseList(mid);
+        ListNode* temp;
+        while(head->next){
+            temp = head->next;
+            head->next = rev;
+            if(rev)
+                rev = rev->next;
+            head = head->next;
+            if(head)
+                head->next = temp;
+            head = temp;
+        }
+    }
+};
