@@ -165,7 +165,10 @@ public:
         return head;    
     }
 };
+```
+
 ## Middle of the Linked List
+
 ```cpp
 class Solution {
 public:
