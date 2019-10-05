@@ -286,21 +286,22 @@ https://leetcode.com/problems/remove-linked-list-elements/
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        ListNode* list = head;
+        ListNode* current = head;
         ListNode* prev = NULL;
-        while(list->val == val){
-            head = list->next;
-            delete(list);
-            list = head;
+        while(current && current->val == val){
+            head = current->next;
+            delete(current);
+            current = head;
         }
-        while(list){
-            if(list->val == val){
-                prev->next = list->next;
-                delete(list);
-                list = prev->next;
+        while(current){
+            if(current->val == val){
+                prev->next = current->next;
+                delete(current);
+                current = prev->next;
+                continue;
             }
-            prev = list;
-            list = list->next;
+            prev = current;
+            current = current->next;
         }
         return head;
     }
@@ -313,7 +314,7 @@ https://leetcode.com/problems/intersection-of-two-linked-lists/
 ```cpp
 class Solution {
 public:
-    int getLen(ListNode *head){
+    int getLength(ListNode *head){
         int i = 0;
         while(head){
             i++;
@@ -324,7 +325,7 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if(!headA || !headA)
             return NULL;
-        int delta = getLen(headA) - getLen(headB);
+        int delta = getLength(headA) - getLength(headB);
         ListNode* min = delta > 0 ? headB : headA;
         ListNode* max = delta <= 0 ? headB : headA;
         delta = abs(delta);
