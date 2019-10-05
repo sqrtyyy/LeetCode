@@ -32,13 +32,13 @@ public:
         return middle;
     }
     ListNode* reverseList(ListNode* head) {
-        ListNode* temp;
+        ListNode* current;
         ListNode* prev = NULL;
         while(head){
-            temp = head->next;
+            current = head->next;
             head->next = prev;
             prev = head;
-            head = temp;
+            head = current;
         }
         return prev;
     }
@@ -236,13 +236,13 @@ public:
         return middle;
     }
     ListNode* reverseList(ListNode* head) {
-        ListNode* temp;
+        ListNode* current;
         ListNode* prev = NULL;
         while(head){
-            temp = head->next;
+            current = head->next;
             head->next = prev;
             prev = head;
-            head = temp;
+            head = current;
         }
         return prev;
     }
@@ -270,13 +270,13 @@ https://leetcode.com/problems/reverse-linked-list/
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* temp;
+        ListNode* current;
         ListNode* prev = NULL;
         while(head){
-            temp = head->next;
+            current = head->next;
             head->next = prev;
             prev = head;
-            head = temp;
+            head = current;
         }
         return prev;
     }
