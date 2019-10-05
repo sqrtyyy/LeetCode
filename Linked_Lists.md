@@ -352,25 +352,23 @@ public:
             return l2;
         if(!l2)
             return l1;
-        ListNode* head;
-        ListNode* start = l1->val > l2->val ? l2 : l1;
-        if(start == l1)
+        ListNode* current = l1->val > l2->val ? l2 : l1;
+        if(current == l1)
                 l1 = l1->next;
             else
                 l2 = l2->next;
-        head = start;
+        ListNode* newList = current;
         while(l1 && l2){
-            head->next = l1->val > l2->val ? l2 : l1;
-            if(head->next == l1)
+            current->next = l1->val > l2->val ? l2 : l1;
+            if(current->next == l1)
                 l1 = l1->next;
             else
                 l2 = l2->next;
-            head = head->next;
+            current = current->next;
         }
-        head->next = l1? l1 : l2;
-        return start;
-        }
-    public:
+        current->next = l1? l1 : l2;
+        return newList;
+    }
     ListNode* middleNode(ListNode* head) {
         ListNode* middle = head;
         ListNode* prev;
