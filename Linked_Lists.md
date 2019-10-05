@@ -75,9 +75,8 @@ public:
         while(fast){
             slow = slow->next;
             fast = fast->next;
-            if(!fast)
-                break;
-            fast = fast->next;
+            if(fast)
+                fast = fast->next;
             if(fast == slow)
                 break;
         }
@@ -108,9 +107,8 @@ public:
         while(fast){
             slow = slow->next;
             fast = fast->next;
-            if(!fast)
-                break;
-            fast = fast->next;
+            if(fast)
+                fast = fast->next;
             if(fast == slow)
                 break;
         }
