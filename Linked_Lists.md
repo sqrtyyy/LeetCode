@@ -248,11 +248,10 @@ public:
             return true;
         ListNode* mid = middleNode(head);
         ListNode* rev = reverseList(mid);
-        ListNode* list = head;
-        while(list != mid){
-            if(list->val != rev->val)
+        while(head != mid){
+            if(head->val != rev->val)
                 return false;
-            list = list->next;
+            head = head->next;
             rev = rev->next;
         }
         return true;
