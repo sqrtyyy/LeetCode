@@ -195,7 +195,7 @@ public:
             middle = middle->next;
             head = head->next;
             if(!head->next)
-                return middle;
+                break;
             head = head->next;
         }
         return middle;
@@ -211,8 +211,6 @@ https://leetcode.com/problems/delete-node-in-a-linked-list/
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        if(!node->next)
-            return;
         ListNode* temp = node->next;
         node->val = temp->val;
         node->next = temp->next;
@@ -230,25 +228,23 @@ class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
         ListNode* middle = head;
-        ListNode* list = head;
-        while(list->next){
+        while(head->next){
             middle = middle->next;
-            list = list->next;
-            if(!list->next)
-                return middle;
-            list = list->next;
+            head = head->next;
+            if(!head->next)
+                break;
+            head = head->next;
         }
         return middle;
     }
     ListNode* reverseList(ListNode* head) {
-        ListNode* list = head;
         ListNode* temp;
         ListNode* prev = NULL;
-        while(list){
-            temp = list->next;
-            list->next = prev;
-            prev = list;
-            list = temp;
+        while(head){
+            temp = head->next;
+            head->next = prev;
+            prev = head;
+            head = temp;
         }
         return prev;
     }
