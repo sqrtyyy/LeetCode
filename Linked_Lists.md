@@ -15,6 +15,8 @@
 
 ## Reorder List
 
+https://leetcode.com/problems/reorder-list/
+
 ```cpp
 class Solution {
 public:
@@ -60,58 +62,67 @@ public:
 };
 ```
 ## Linked List Cycle II
+
+https://leetcode.com/problems/linked-list-cycle-ii/submissions/
+
 ```cpp
 class Solution {
 public:
-    ListNode *detectCycle(ListNode *head) {
+     ListNode *detectCycle(ListNode *head) {
         if(!head)
             return NULL;
-        ListNode* turtle = head;
-        ListNode* rabbit = head;
-        do{
-            turtle = turtle->next;
-            rabbit = rabbit->next;
-            if(!rabbit)
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast){
+            slow = slow->next;
+            fast = fast->next;
+            if(!fast)
                 break;
-            rabbit = rabbit->next;
-        }while(rabbit && rabbit != turtle);
-        if(!rabbit || ! turtle){
+            fast = fast->next;
+            if(fast == slow)
+                break;
+        }
+        if(!fast){
             return NULL;
         }
-        rabbit = head;
-        while(rabbit != turtle){
-            rabbit = rabbit->next;
-            turtle = turtle->next;
+        fast = head;
+        while(fast != slow){
+            fast = fast->next;
+            slow = slow->next;
         }
-        return rabbit;
-        
+        return fast;   
     }
 };
 ```
 ## Linked List Cycle
+
+https://leetcode.com/problems/linked-list-cycle/submissions/
+
 ```cpp
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
         if(!head)
-            return false;
-        ListNode* turtle = head;
-        ListNode* rabbit = head;
-        do{
-            turtle = turtle->next;
-            rabbit = rabbit->next;
-            if(!rabbit)
+            return NULL;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast){
+            slow = slow->next;
+            fast = fast->next;
+            if(!fast)
                 break;
-            rabbit = rabbit->next;
-        }while(rabbit && rabbit != turtle);
-        if(!rabbit || ! turtle){
-            return false;
+            fast = fast->next;
+            if(fast == slow)
+                break;
         }
-        return true;
+        return fast != NULL;
     }
 };
 ```
 ## Merge Two Sorted Lists
+
+https://leetcode.com/problems/merge-two-sorted-lists/
+
 ```C++
 class Solution {
 public:
@@ -141,6 +152,9 @@ public:
 };
 ```
 ## Remove Nth Node From End of List
+
+https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+
 ```cpp
 class Solution {
 public:
@@ -170,6 +184,8 @@ public:
 
 ## Middle of the Linked List
 
+https://leetcode.com/problems/middle-of-the-linked-list/
+
 ```cpp
 class Solution {
 public:
@@ -189,6 +205,8 @@ public:
 
 ## Delete Node in a Linked List
 
+https://leetcode.com/problems/delete-node-in-a-linked-list/
+
 ```cpp
 class Solution {
 public:
@@ -204,6 +222,8 @@ public:
 ```
 
 ## Palindrome Linked List
+
+https://leetcode.com/problems/palindrome-linked-list/
 
 ```cpp
 class Solution {
@@ -249,6 +269,9 @@ public:
 };
 ```
 ##  Reverse Linked List
+
+https://leetcode.com/problems/reverse-linked-list/
+
 ```cpp
 class Solution {
 public:
@@ -266,6 +289,9 @@ public:
 };
 ```
 ## Remove Linked List Elements
+
+https://leetcode.com/problems/remove-linked-list-elements/
+
 ```cpp
 class Solution {
 public:
@@ -291,6 +317,9 @@ public:
 };
 ```
 ## Intersection of Two Linked Lists
+
+https://leetcode.com/problems/intersection-of-two-linked-lists/
+
 ```cpp
 class Solution {
 public:
@@ -322,6 +351,9 @@ public:
 };
 ```
 ## Sort List
+
+https://leetcode.com/problems/sort-list/
+
 ```cpp
 class Solution {
 public:
