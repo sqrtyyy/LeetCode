@@ -20,14 +20,14 @@ https://leetcode.com/problems/reorder-list/
 ```cpp
 class Solution {
 public:
+    public:
     ListNode* middleNode(ListNode* head) {
         ListNode* middle = head;
         while(head->next){
             middle = middle->next;
             head = head->next;
-            if(!head->next)
-                break;
-            head = head->next;
+            if(head->next)
+                head = head->next;
         }
         return middle;
     }
@@ -194,9 +194,8 @@ public:
         while(head->next){
             middle = middle->next;
             head = head->next;
-            if(!head->next)
-                break;
-            head = head->next;
+            if(head->next)
+                head = head->next;
         }
         return middle;
     }
@@ -231,9 +230,8 @@ public:
         while(head->next){
             middle = middle->next;
             head = head->next;
-            if(!head->next)
-                break;
-            head = head->next;
+            if(head->next)
+                head = head->next;
         }
         return middle;
     }
@@ -384,9 +382,8 @@ public:
             prev = middle;
             middle = middle->next;
             head = head->next;
-            if(!head->next)
-                break;
-            head = head->next;
+            if(head->next)
+                head = head->next;
         }
         prev->next = NULL;
         return middle;
