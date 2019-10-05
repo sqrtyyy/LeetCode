@@ -45,8 +45,7 @@ public:
     void reorderList(ListNode* head) {
         if(!head || !head->next)
             return;
-        ListNode* mid = middleNode(head);
-        ListNode* rev = reverseList(mid);
+        ListNode* rev = reverseList(middleNode(head));
         ListNode* temp;
         while(head->next){
             temp = head->next;
