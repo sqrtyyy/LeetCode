@@ -6,7 +6,7 @@
 
 ## Fibonacci Number
 
-Here's different methods of calculating N's member of Fibonacci sequence.
+Here're different methods of calculating N's member of Fibonacci sequence.
 
 https://leetcode.com/problems/fibonacci-number/
 
