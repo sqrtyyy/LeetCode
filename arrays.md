@@ -2,7 +2,7 @@
 + [Two Sum](#2_sum)
 + [3Sum](#threesome)
 
-# Two Sum
+## Two Sum
 
 https://leetcode.com/problems/two-sum/
 
@@ -22,11 +22,11 @@ public:
 };
 ```
 
-# 3sum
+## 3sum
 
 https://leetcode.com/problems/3sum/
 
-## Fast
+### Fast
 
 ```C++
 class Solution {
@@ -56,7 +56,7 @@ public:
 };
 ```
 
-## Slow
+### Slow
 
 ```C++
 class Solution {
