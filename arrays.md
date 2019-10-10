@@ -1,7 +1,7 @@
 # Tasks with arrays
 + [Two Sum](#two-sum)
-+ [3Sum](#three-some)
-+ [Subarray Sum Equals K](#sum-eq)
++ [3Sum](#3sum)
++ [Subarray Sum Equals K](#subarray-sum-equals-k)
 
 ## Two Sum
 
