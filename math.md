@@ -1,8 +1,8 @@
 # Mathematics
-+ [Fibonacci Number](#fib)
-  + [Recursive](#fib_rec)
-  + [Recursive with memorization](#fib_rec_memo)
-  + [Iterative](#fib_iter)
++ [Fibonacci Number](#fibonacci-number)
+  + [Recursive](#recursive)
+  + [Recursive with memorization](#recursive-with-memorization)
+  + [Iterative](#iterative)
 
 ## Fibonacci Number
 
