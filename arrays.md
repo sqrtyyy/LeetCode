@@ -1,5 +1,5 @@
 # Tasks with arrays
-+ [Two Sum](#2_sum)
++ [Two Sum](#two_sum)
 + [3Sum](#threesome)
 + [Subarray Sum Equals K](#sum_eq)
 
