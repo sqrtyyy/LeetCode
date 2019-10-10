@@ -1,9 +1,9 @@
 # Linked Lists
 
-+ [Reorder List](#reorder_list)
-+ [Linked List Cycle II](#linked_list_cycle_2)
-+ [Linked List Cycle](#linked_list_cycle)
-+ [Merge Two Sorted Lists](#merge_two_sorted_lists)
++ [Reorder List](#reorder-list)
++ [Linked List Cycle II](#linked-list-cycle-2)
++ [Linked List Cycle](#linked-list-cycle)
++ [Merge Two Sorted Lists](#merge-two-sorted-lists)
 + [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
 + [Middle of the Linked List](#middle-of-the-linked-list)
 + [Delete Node in a Linked List](#delete-node-in-a-linked-list)
