@@ -1,6 +1,7 @@
 # Tasks with arrays
 + [Two Sum](#2_sum)
 + [3Sum](#threesome)
++ [Subarray Sum Equals K](#sum_eq)
 
 ## Two Sum
 
@@ -12,9 +13,9 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) {
         map <int,int> mp;
         for(int i = 0; i < nums.size(); i++){
-            map <int,int> :: iterator it = mp.find(target - nums[i]);
-            if(it != mp.end())
-                return {it->second, i};
+            map <int,int> :: iterator sum_find = mp.find(target - nums[i]);
+            if(sum_find != mp.end())
+                return {sum_find->second, i};
             mp.insert(make_pair(nums[i], i));
         }
         return {0};
@@ -100,6 +101,34 @@ public:
                         result.push_back(sum[j]); 
                 }
             }
+        }
+        return result;
+    }
+};
+```
+
+## Subarray Sum Equals K
+
+https://leetcode.com/problems/subarray-sum-equals-k/
+
+```C++
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        map <int, int> sum_arr;
+        int sum = 0;
+        int result = 0;
+        for(auto elem : nums){
+            sum_arr.insert(make_pair(sum, 1));
+            sum += elem;
+            map <int, int> :: iterator sum_find = sum_arr.find(sum - k);
+            if(sum_find != sum_arr.end()){
+                result += sum_find->second;
+            }
+            sum_find = sum_arr.find(sum);
+            if(sum_find != sum_arr.end()){
+                sum_find->second++;
+            }   
         }
         return result;
     }
