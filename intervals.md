@@ -1,8 +1,8 @@
 # Tasks with intervals
 
-+ [Non-overlapping Intervals](#non_overlap)
-+ [Merge Intervals](#merge)
-+ [Insert Interval](#insert)
++ [Non-overlapping Intervals](#non_overlapping-intervals)
++ [Merge Intervals](#merge-intervals)
++ [Insert Interval](#insert-interval)
 
 ## Non-overlapping Intervals
 
