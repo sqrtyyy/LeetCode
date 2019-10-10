@@ -1,6 +1,6 @@
 # Tasks with arrays
 + [Two Sum](#two-sum)
-+ [3Sum](#threesome)
++ [3Sum](#three-some)
 + [Subarray Sum Equals K](#sum-eq)
 
 ## Two Sum
