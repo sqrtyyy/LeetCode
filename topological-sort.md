@@ -88,3 +88,65 @@ public:
 
 };
 ```
+## Alien Dictionary
+
+https://www.lintcode.com/problem/alien-dictionary/description
+
+```C++
+class Solution {
+public:
+     void BuildGraph(vector<string> &words, bool letters[], vector<vector<int>>& graph){
+        for(int i = 1; i < words.size(); i++){
+            string word_1 = words[i];
+            string word_2 = words[i - 1];
+            int length = min(word_1.length(), word_2.length());
+            for(int j = 0; j < length; j++){
+                if(word_1[j] != word_2[j]){
+                    graph[word_1[j] - 'a'].push_back(word_2[j] - 'a');
+                    break;
+                }
+            }
+        }
+        
+     }
+     bool DeepFirstSearch(int letter, vector<vector<int>>& graph, vector<bool>& completedLetters, vector<bool>& usedLetters, string& order){
+        if(completedLetters[letter])
+            return true;
+        int succeed = 0;
+        usedLetters[letter] = true;
+        for(auto reqletter : graph[letter]){
+            if(!completedLetters[reqletter]){
+                if(usedLetters[reqletter])
+                    return {};
+                if(DeepFirstSearch(reqletter, graph, completedLetters, usedLetters, order))
+                    completedLetters[reqletter] = true;
+            }
+            if(completedLetters[reqletter])
+                succeed++;
+        }
+        order.push_back(letter + 'a');
+        if(succeed == graph[letter].size())
+            completedLetters[letter] = true;
+        return succeed == graph[letter].size();
+    }
+    string alienOrder(vector<string> &words) {
+        bool letters[26] = {0};
+        string order;
+        vector<vector<int>> graph(26);
+        vector <bool> completedLetters(26, false);
+        vector <bool> dictionary(26);
+        for(auto word : words)
+            for(auto letter : word)
+                dictionary[letter - 'a'] = true;
+        BuildGraph(words,letters, graph);
+        for(int i = 0; i < graph.size(); i++){
+            vector <bool> usedLetters(26, false);
+            if(!completedLetters[i] && dictionary[i])
+                if(!DeepFirstSearch(i, graph, completedLetters, usedLetters, order))
+                  return {};
+        }
+        return order;
+    }
+ 
+};
+```
