@@ -17,11 +17,48 @@
 
 ## Binary Tree Inorder Traversal
 
-https://leetcode.com/problems/binary-tree-level-order-traversal/
+https://leetcode.com/problems/binary-tree-inorder-traversal/
 
 ### Recursive
 ```C++
-empty
+class Solution {
+public:
+    void InorderHelp(TreeNode* root, vector<int>& result){
+        if(!root)
+            return;
+        InorderHelp(root->left, result);
+        result.push_back(root->val);
+        InorderHelp(root->right, result);
+    }
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> result;
+        InorderHelp(root, result);
+        return result;
+    }
+};
+```
+
+### Iterative
+```C++
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> result;
+        stack <TreeNode*> cash;
+        TreeNode* current = root;
+        while(!cash.empty() || current != NULL){
+            while(current){
+                cash.push(current);
+                current = current->left;
+            }
+            current = cash.top();
+            result.push_back(current->val);
+            cash.pop();
+            current = current->right; 
+        };
+        return result;
+    }
+};
 ```
 
 ## Symmetric Tree
@@ -42,7 +79,43 @@ public:
     }
 };
 ```
-
+### Iterative
+```C++
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(!root)
+            return true;
+        stack <TreeNode*> cashLeft;
+        stack <TreeNode*> cashRight;
+        TreeNode* currentLeft = root->left;
+        TreeNode* currentRight = root->right;
+        while(!cashLeft.empty() || currentLeft != NULL){
+            while(currentLeft){
+                if(!currentRight)
+                    return false;
+                cashLeft.push(currentLeft);
+                currentLeft = currentLeft->left;
+                cashRight.push(currentRight);
+                currentRight = currentRight->right;
+            }
+            if(currentRight)
+                return false;
+            currentLeft = cashLeft.top();
+            currentRight = cashRight.top();
+            if(currentLeft->val != currentRight->val)
+                return false;
+            cashLeft.pop();
+            cashRight.pop();
+            currentLeft = currentLeft->right;
+            currentRight = currentRight->left;
+        }
+        if(!currentLeft && currentRight)
+            return false;
+        return true;
+    }
+};
+```
 ## Maximum Depth of Binary Tree
 
 https://leetcode.com/problems/maximum-depth-of-binary-tree/
