@@ -223,6 +223,28 @@ public:
 
 https://leetcode.com/problems/binary-tree-level-order-traversal/
 
+### Recursive
+```C++
+class Solution {
+public:
+    void Vector(TreeNode* root, vector<vector<int>>& result, int level){
+        if(!root)
+            return;
+        if(level >= result.size())
+            result.resize(level + 1);
+        result[level].push_back(root->val);
+        Vector(root->left, result, level + 1);
+        Vector(root->right, result, level + 1);
+        
+    }
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> result;
+        Vector(root, result, 0);
+        return result;
+    }
+};
+```
+
 ## Subtree of Another Tree
 
 https://leetcode.com/problems/subtree-of-another-tree/
