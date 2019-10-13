@@ -274,6 +274,51 @@ https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
 
+### Recursive
+```C++
+class Solution {
+private:
+    TreeNode* result;
+public:
+    bool Recursive(TreeNode* root, TreeNode* p, TreeNode* q){
+        if(!root)
+            return false;
+        bool left = Recursive(root->left, p, q);
+        bool right = Recursive(root->right, p, q);
+        if((left && right) || (left && (root == p || root == q)) || ((root == p || root == q) && right)){
+            result = root;
+        }
+        return left || right || (root == p || root == q); 
+    }
+        
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        Recursive(root, p, q);
+        return this->result;
+    }
+};
+```
+
+## Lowest Common Ancestor of a Binary Search Tree
+
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+
+### Iterative
+```C++
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        int Max = max(p->val, q->val);
+        int Min = min(p->val, q->val);
+        while(root && !(root->val >= Min && root->val <= Max))
+            if(root->val < Min)
+                root = root->right;
+            else
+                root = root->left;
+        return root;
+    }
+};
+```
+
 ## Inorder Successor in BST
 
 https://www.lintcode.com/problem/inorder-successor-in-bst/description
