@@ -120,6 +120,23 @@ https://leetcode.com/problems/binary-tree-level-order-traversal/
 
 https://leetcode.com/problems/subtree-of-another-tree/
 
+### Recursive
+```C++
+class Solution {
+public:
+    bool isSameTree(TreeNode* tree1, TreeNode* tree2) {
+        if(!tree1 || !tree2)
+            return !tree1 && !tree2;
+        return (tree1->val == tree2->val) && isSameTree(tree1->left, tree2->left) && isSameTree(tree1->right, tree2->right);
+    }
+    bool isSubtree(TreeNode* s, TreeNode* t) {
+        if(!s || !t)
+            return !s && !t;
+        return isSameTree(s,t) || isSubtree(s->left, t) || isSubtree(s->right, t);
+    }
+};
+```
+
 ## Kth Smallest Element in a BST
 
 https://leetcode.com/problems/kth-smallest-element-in-a-bst/
