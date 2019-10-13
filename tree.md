@@ -270,6 +270,25 @@ public:
 
 https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 
+### Recursive
+```C++
+class Solution {
+public:
+     void InorderHelp(TreeNode* root, vector<int>& result){
+        if(!root)
+            return;
+        InorderHelp(root->left, result);
+        result.push_back(root->val);
+        InorderHelp(root->right, result);
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        vector <int> result;
+        InorderHelp(root, result);
+        return result[k - 1];
+    }
+};
+```
+
 ## Lowest Common Ancestor of a Binary Tree
 
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
@@ -293,7 +312,7 @@ public:
         
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         Recursive(root, p, q);
-        return this->result;
+        return result;
     }
 };
 ```
