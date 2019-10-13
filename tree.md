@@ -147,7 +147,41 @@ public:
     }
 };
 ```
-
+### Iterative
+```C++
+class Solution {
+public:
+    bool isSameTree(TreeNode* tree1, TreeNode* tree2) {
+        stack <TreeNode*> cash1;
+        stack <TreeNode*> cash2;
+        TreeNode* current1 = tree1;
+        TreeNode* current2 = tree2;
+        while(!cash1.empty() || current1 != NULL){
+            while(current1){
+                if(!current2)
+                    return false;
+                cash1.push(current1);
+                current1 = current1->left;
+                cash2.push(current2);
+                current2 = current2->left;
+            }
+            if(current2)
+                return false;
+            current1 = cash1.top();
+            current2 = cash2.top();
+            if(current1->val != current2->val)
+                return false;
+            cash1.pop();
+            cash2.pop();
+            current1 = current1->right;
+            current2 = current2->right;
+        }
+        if(!current1 && current2)
+            return false;
+        return true;
+    }
+};
+```
 ## Invert Binary Tree
 
 https://leetcode.com/problems/invert-binary-tree/
