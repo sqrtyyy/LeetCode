@@ -346,6 +346,23 @@ https://www.lintcode.com/problem/inorder-successor-in-bst/description
 
 https://leetcode.com/problems/validate-binary-search-tree/
 
+### Recursive
+```C++
+class Solution {
+public:
+    bool Comp(TreeNode* root,long int max,long int min){
+        if(!root)
+            return true;
+        if(min >= root->val || root->val >= max)
+            return false;
+        return Comp(root->left, root->val, min) && Comp(root->right, max, root->val) ;
+    }
+    bool isValidBST(TreeNode* root) {
+        return Comp(root, INFINITY, -INFINITY);
+    }
+};
+```
+
 ## Binary Search Tree Iterator
 
 https://leetcode.com/problems/binary-search-tree-iterator/
