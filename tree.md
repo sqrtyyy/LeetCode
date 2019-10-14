@@ -349,3 +349,34 @@ https://leetcode.com/problems/validate-binary-search-tree/
 ## Binary Search Tree Iterator
 
 https://leetcode.com/problems/binary-search-tree-iterator/
+
+```C++
+class BSTIterator {
+public:
+    BSTIterator(TreeNode* root) {
+        tree = root;
+        minNode = NULL;
+        InorderHelp(tree);
+    }
+    int next() {
+        int min = mins.front();
+        mins.pop();
+        return min;   
+    }
+    bool hasNext() {
+        return !mins.empty();
+        
+    }
+private:
+    TreeNode* minNode;
+    TreeNode* tree;
+    queue <int> mins;
+    void InorderHelp(TreeNode* node){
+        if(!node)
+            return;
+        InorderHelp(node->left);
+        mins.push(node->val);
+        InorderHelp(node->right);
+    }
+};
+```
