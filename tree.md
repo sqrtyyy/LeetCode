@@ -354,9 +354,7 @@ https://leetcode.com/problems/binary-search-tree-iterator/
 class BSTIterator {
 public:
     BSTIterator(TreeNode* root) {
-        tree = root;
-        minNode = NULL;
-        InorderHelp(tree);
+        InorderHelp(root);
     }
     int next() {
         int min = mins.front();
@@ -367,9 +365,7 @@ public:
         return !mins.empty();
         
     }
-private:
-    TreeNode* minNode;
-    TreeNode* tree;
+protected:
     queue <int> mins;
     void InorderHelp(TreeNode* node){
         if(!node)
