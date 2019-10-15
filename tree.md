@@ -342,6 +342,29 @@ public:
 
 https://www.lintcode.com/problem/inorder-successor-in-bst/description
 
+### Recursive
+```C++
+class Solution {
+public:
+    TreeNode * inorderSuccessor(TreeNode * root, TreeNode * p) {
+        vector <TreeNode*> result;
+        InorderHelp(root, result);
+        auto nx = find(result.begin(), result.end(), p);
+        if(nx == result.end() || p == result.back())
+            return NULL;
+        return *next(nx, 1); 
+    }
+private: 
+    void InorderHelp(TreeNode* root, vector<TreeNode*>& result){
+            if(!root)
+                return;
+            InorderHelp(root->left, result);
+            result.push_back(root);
+            InorderHelp(root->right, result);
+    }
+};
+```
+
 ## Validate Binary Search Tree
 
 https://leetcode.com/problems/validate-binary-search-tree/
