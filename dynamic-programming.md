@@ -18,10 +18,41 @@
 + [N-Queens II](#n-queens-ii)
 
 ## Backpack
+
+https://stepik.org/lesson/13259/step/5?unit=3444
+
 ## Climbing Stairs
+
+https://leetcode.com/problems/climbing-stairs/
+
+```C++
+class Solution {
+public:
+    int climbStairs(int n) {
+        int first = 0;
+        int second = 1;
+        while (n > 0){
+            second = first + second;
+            first = second - first;
+            n--;
+        }
+        return second;
+    }
+};
+```
+
 ## Coin Change
+
+https://leetcode.com/problems/coin-change/
+
 ## Longest Increasing Subsequence
+
+https://leetcode.com/problems/longest-increasing-subsequence/
+
 ## Longest Common Subsequence
+
+https://leetcode.com/problems/longest-common-subsequence/
+
 ## Word Break
 
 https://leetcode.com/problems/word-break/
@@ -142,3 +173,50 @@ public:
     }
 };
 ```
+## Jump Game
+
+https://leetcode.com/problems/jump-game/
+
+## Jump Game II
+
+https://leetcode.com/problems/jump-game-ii/
+
+## House Robber
+
+https://leetcode.com/problems/house-robber/submissions/
+
+```C++
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int prev = 0;
+        int prev_prev = 0;
+        for(auto num : nums){
+            int tmp = prev_prev;
+            prev_prev = prev;
+            prev = max(tmp + num, prev);
+        }
+        return prev;
+    }
+};
+```
+
+## House Robber II
+
+https://leetcode.com/problems/house-robber-ii/
+
+## Decode Ways
+
+https://leetcode.com/problems/decode-ways/
+
+## Coin Change 2
+
+https://leetcode.com/problems/decode-ways/
+
+## N-Queens
+
+https://leetcode.com/problems/n-queens/
+
+## N-Queens II
+
+https://leetcode.com/problems/n-queens-ii/
