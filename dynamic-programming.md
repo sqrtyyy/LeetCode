@@ -49,6 +49,25 @@ https://leetcode.com/problems/coin-change/
 
 https://leetcode.com/problems/longest-increasing-subsequence/
 
+```C++
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        vector <int> maxISArray(nums.size(), 0);
+        int answer = 0;
+        for(int i = 0; i < nums.size(); i++){
+            int maxIS = 1;
+            for(int j = 0; j < i; j++)
+                if(nums[i] > nums[j])
+                    maxIS = max(maxIS, maxISArray[j]);
+            maxISArray[i] = maxIS + 1;
+            answer = max(answer, maxIS);
+        }
+        return answer;
+    }
+};
+```
+
 ## Longest Common Subsequence
 
 https://leetcode.com/problems/longest-common-subsequence/
@@ -176,6 +195,19 @@ public:
 ## Jump Game
 
 https://leetcode.com/problems/jump-game/
+
+```C++
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int last = nums.size() - 1;
+        for(int i = nums.size() - 1; i >= 0; i--)
+            if(i + nums[i] >= last)
+                last = i;
+        return last == 0;
+    }
+};
+```
 
 ## Jump Game II
 
