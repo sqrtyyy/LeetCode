@@ -32,13 +32,13 @@ public:
         return middle;
     }
     ListNode* reverseList(ListNode* head) {
-        ListNode* current;
+        ListNode* current = head;
         ListNode* prev = NULL;
-        while(head){
-            current = head->next;
-            head->next = prev;
-            prev = head;
-            head = current;
+        while(current){
+            ListNode* next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
         }
         return prev;
     }
@@ -232,13 +232,13 @@ public:
         return middle;
     }
     ListNode* reverseList(ListNode* head) {
-        ListNode* current;
+        ListNode* current = head;
         ListNode* prev = NULL;
-        while(head){
-            current = head->next;
-            head->next = prev;
-            prev = head;
-            head = current;
+        while(current){
+            ListNode* next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
         }
         return prev;
     }
@@ -265,13 +265,13 @@ https://leetcode.com/problems/reverse-linked-list/
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* current;
+        ListNode* current = head;
         ListNode* prev = NULL;
-        while(head){
-            current = head->next;
-            head->next = prev;
-            prev = head;
-            head = current;
+        while(current){
+            ListNode* next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
         }
         return prev;
     }
@@ -313,30 +313,20 @@ https://leetcode.com/problems/intersection-of-two-linked-lists/
 ```cpp
 class Solution {
 public:
-    int getLength(ListNode *head){
-        int i = 0;
-        while(head){
-            i++;
-            head = head->next;
-        }
-        return i;
-    }
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if(!headA || !headA)
-            return NULL;
-        int delta = getLength(headA) - getLength(headB);
-        ListNode* min = delta > 0 ? headB : headA;
-        ListNode* max = delta <= 0 ? headB : headA;
-        delta = abs(delta);
-        while(delta){
-                max = max->next;
-                delta--;
-            }
-        while(max && max != min){
-            max = max->next;
-            min = min->next;
+        ListNode* curA = headA;
+        ListNode* curB = headB;
+        while(curA != curB){
+            if(!curA)
+                curA = headB;
+            else
+                curA = curA->next;
+            if(!curB)
+                curB = headA;
+            else
+                curB = curB->next;
         }
-        return max;
+        return curA;
     }
 };
 ```
