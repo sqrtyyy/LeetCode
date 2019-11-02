@@ -95,7 +95,7 @@ https://www.lintcode.com/problem/alien-dictionary/description
 ```C++
 class Solution {
 public:
-     void BuildGraph(vector<string> &words, bool letters[], vector<vector<int>>& graph){
+     void BuildGraph(vector<string> &words, vector<vector<int>>& graph){
         for(int i = 1; i < words.size(); i++){
             string word_1 = words[i];
             string word_2 = words[i - 1];
@@ -138,7 +138,7 @@ public:
         for(auto word : words)
             for(auto letter : word)
                 dictionary[letter - 'a'] = true;
-        BuildGraph(words,letters, graph);
+        BuildGraph(words, graph);
         for(int i = 0; i < graph.size(); i++){
             vector <bool> usedLetters(26, false);
             if(!completedLetters[i] && dictionary[i])
