@@ -57,7 +57,7 @@ class Solution {
     usedCourses[course] = true;
     for (auto reqCourse : courseTakes[course]) {
       if (!completedCourses[reqCourse]) {
-        if (usedCourses[reqCourse]) return {};
+        if (usedCourses[reqCourse]) return false;
         if (DeepFirstSearch(reqCourse, courseTakes, completedCourses,
                             usedCourses, order))
           completedCourses[reqCourse] = true;
@@ -78,7 +78,7 @@ class Solution {
       if (!completedCourses[i])
         if (!DeepFirstSearch(i, courseTakes, completedCourses, usedCourses,
                              order))
-          return false;
+          return {};
     }
     return order;
   }
@@ -112,7 +112,7 @@ class Solution {
     usedLetters[letter] = true;
     for (auto reqletter : graph[letter]) {
       if (!completedLetters[reqletter]) {
-        if (usedLetters[reqletter]) return {};
+        if (usedLetters[reqletter]) return false;
         if (DeepFirstSearch(reqletter, graph, completedLetters, usedLetters,
                             order))
           completedLetters[reqletter] = true;
