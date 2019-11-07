@@ -3,6 +3,7 @@
   + [Recursive](#recursive)
   + [Recursive with memorization](#recursive-with-memorization)
   + [Iterative](#iterative)
++ [Count Primes](#count-primes)
 
 ## Fibonacci Number
 
@@ -54,6 +55,28 @@ class Solution {
       N--;
     }
     return first;
+  }
+};
+```
+## Count Primes
+
+https://leetcode.com/problems/count-primes/
+
+```C++
+class Solution {
+ public:
+  int countPrimes(int n) {
+    if (n == 0) return 0;
+    bool A[n] = {false};
+    for (int i = 2; i * i < n; i++) {
+      if (!A[i]) {
+        for (int j = i * i; j < n; j += i) A[j] = true;
+      }
+    }
+    int answer = 0;
+    for (int i = 2; i < n; i++)
+      if (!A[i]) answer++;
+    return answer;
   }
 };
 ```
