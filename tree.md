@@ -323,18 +323,20 @@ class Solution {
 
 ## Inorder Successor in BST
 
+### LintCode
+
 https://www.lintcode.com/problem/inorder-successor-in-bst/description
 
-### Recursive
+#### Recursive
 ```C++
 class Solution {
  public:
   TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
     vector<TreeNode*> result;
     InorderHelp(root, result);
-    auto nx = find(result.begin(), result.end(), p);
-    if (nx == result.end() || p == result.back()) return NULL;
-    return *next(nx, 1);
+    auto node = find(result.begin(), result.end(), p);
+    if (node == result.end() || p == result.back()) return NULL;
+    return *next(node, 1);
   }
 
  private:
@@ -346,7 +348,30 @@ class Solution {
   }
 };
 ```
+### Ne LintCode
 
+#### Structure
+
+```C++
+struct TreeNode {
+TreeNode *parent;
+TreeNode *left;
+TreeNode *right;
+};
+```
+#### Solution
+```C++
+TreeNode* inorderSuccessor(TreeNode* node) {
+    TreeNode* cur = node;
+    TreeNode* cur_parent = cur->parent;
+    while (cur_parent && cur_parent->right == cur) {
+        cur = cur_parent;
+        cur_parent = cur_parent->parent;
+    }
+    return cur_parent;
+}
+```
+ 
 ## Validate Binary Search Tree
 
 https://leetcode.com/problems/validate-binary-search-tree/
