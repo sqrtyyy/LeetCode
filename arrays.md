@@ -157,4 +157,19 @@ class Solution {
 https://leetcode.com/problems/maximum-product-subarray/
 
 ```C++
+class Solution {
+ public:
+  int maxProduct(vector<int>& nums) {
+    int maxProduct = nums[0];
+    int curProduct = 1;
+    int curMinProduct = 1;
+    for (auto num : nums) {
+      int tmpCurProduct = curProduct;
+      curProduct = max(num, max(tmpCurProduct * num, curMinProduct * num));
+      curMinProduct = min(num, min(tmpCurProduct * num, curMinProduct * num));
+      maxProduct = max(maxProduct, curProduct);
+    }
+    return maxProduct;
+  }
+};
 ```
