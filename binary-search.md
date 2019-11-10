@@ -133,3 +133,38 @@ public:
     }
 };
 ```
+### Bad Binary Search
+```C++
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        int left = 0;
+        int right = arr.size() - 1;
+        int mid = 0;
+        while(right >= left){
+            mid = (right + left) / 2;
+            if(arr[mid] == x)
+                break;
+            if(arr[mid] > x)
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+        vector <int> result;
+        left = mid - 1;
+        right = mid;
+        while(k > 0){
+            if(left < 0 || right < arr.size() && abs(x - arr[right]) < abs(x - arr[left])){
+                result.push_back(arr[right]);
+                right++;
+            }
+            else{
+                result.insert(result.begin(), arr[left]);
+                left--;
+            }
+            k--;
+        }
+        return result;
+    }
+};
+```
