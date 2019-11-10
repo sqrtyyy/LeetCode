@@ -114,6 +114,7 @@ class Solution {
 ```
 
 ### Binary Search
+#### Good
 ```C++
 class Solution {
 public:
@@ -133,7 +134,7 @@ public:
     }
 };
 ```
-### Bad Binary Search
+#### Bad
 ```C++
 class Solution {
 public:
