@@ -31,6 +31,27 @@ https://leetcode.com/problems/group-anagrams/
 
 https://leetcode.com/problems/valid-parentheses/
 
+```C++
+class Solution {
+ public:
+  bool isValid(string s) {
+    stack<char> brackets;
+    for (auto character : s) {
+      if (character == ')' || character == '}' || character == ']') {
+        if (brackets.empty() || abs(brackets.top() - character) > 2) {
+          return false;
+        } else {
+          brackets.pop();
+        }
+      } else {
+        brackets.push(character);
+      }
+    }
+    return brackets.empty();
+  }
+};
+```
+
 # Generate Parentheses
 
 https://leetcode.com/problems/generate-parentheses/
