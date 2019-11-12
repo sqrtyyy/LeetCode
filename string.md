@@ -15,6 +15,29 @@
 
 https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
+```C++
+class Solution {
+ public:
+  int lengthOfLongestSubstring(string s) {
+    vector<char> letters;
+    int result;
+    int maxLength = 0;
+    int length = 0;
+    for (auto character : s) {
+      auto founded = find(letters.begin(), letters.end(), character);
+      if (founded != letters.end()) {
+        maxLength = max(length, maxLength);
+        length = letters.size() - (founded + 1 - letters.begin());
+        letters.erase(letters.begin(), founded + 1);
+      }
+      length++;
+      letters.push_back(character);
+    }
+    return max(maxLength, length);
+  }
+};
+```
+
 # Longest Repeating Character Replacement
 
 https://leetcode.com/problems/longest-repeating-character-replacement/
