@@ -229,6 +229,30 @@ class Solution {
 };
 ```
 
+### Iterative
+```C++
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        if (!root) return {};
+        vector<vector<int>> result;
+        queue <pair<TreeNode*, int>> order;
+        order.push(make_pair(root, 0));
+        while (order.size()){
+            pair<TreeNode*, int> curQ = order.front();
+            int lvl = curQ.second;
+            TreeNode* curN = curQ.first;
+            order.pop();
+            if (lvl == result.size()) result.resize(lvl + 1);
+            result[lvl].push_back(curN->val);
+            if (curN->left) order.push(make_pair(curN->left,lvl + 1));
+            if (curN->right) order.push(make_pair(curN->right, lvl + 1));
+        }
+        return result;
+    }
+};
+```
+
 ## Subtree of Another Tree
 
 https://leetcode.com/problems/subtree-of-another-tree/
@@ -378,7 +402,13 @@ TreeNode *right;
 #### Solution
 ```C++
 TreeNode* inorderSuccessor(TreeNode* node) {
+    if(!node) return NULL;
     TreeNode* cur = node;
+    if (cur->right) {
+      cur = cur->right;
+      while (cur->right) cur = cur->left;
+      return cur;
+    }
     TreeNode* cur_parent = cur->parent;
     while (cur_parent && cur_parent->right == cur) {
         cur = cur_parent;
