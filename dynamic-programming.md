@@ -21,6 +21,22 @@
 
 https://stepik.org/lesson/13259/step/5?unit=3444
 
+```C++
+int MaxWeight(int capacity, vector<int>& nums) {
+  vector<vector<int>> maxValue(nums.size() + 1, vector<int>(capacity + 1));
+  for (int i = 1; i <= nums.size(); i++) {
+    for (int j = 1; j <= capacity; j++) {
+      if (nums[i - 1] > j)
+        maxWeight[i][j] = maxWeight[i - 1][j];
+      else
+        maxWeight[i][j] = max(maxWeight[i - 1][j],
+                              maxWeight[i - 1][j - nums[i - 1]] + nums[i - 1]);
+    }
+  }
+  return maxValue.back().back();
+}
+```
+
 ## Climbing Stairs
 
 https://leetcode.com/problems/climbing-stairs/
@@ -44,6 +60,20 @@ class Solution {
 ## Coin Change
 
 https://leetcode.com/problems/coin-change/
+
+```C++
+class Solution {
+ public:
+  int coinChange(vector<int>& coins, int amount) {
+    vector<int> sums(amount + 1, amount + 1);
+    sums[0] = 0;
+    for (int i = 1; i <= amount; i++)
+      for (auto coin : coins)
+        if (coin <= i) sums[i] = min(sums[i], sums[i - coin] + 1);
+    return sums.back() > amount ? -1 : sums.back();
+  }
+};
+```
 
 ## Longest Increasing Subsequence
 
@@ -70,6 +100,24 @@ class Solution {
 ## Longest Common Subsequence
 
 https://leetcode.com/problems/longest-common-subsequence/
+
+```C++
+class Solution {
+ public:
+  int longestCommonSubsequence(string text1, string text2) {
+    vector<vector<int>> sames(text1.length() + 1,
+                              vector<int>(text2.length() + 1));
+    for (int i = 1; i <= text1.length(); i++)
+      for (int j = 1; j <= text2.length(); j++) {
+        if (text1[i - 1] == text2[j - 1])
+          sames[i][j] = 1 + sames[i - 1][j - 1];
+        else
+          sames[i][j] = max(sames[i][j - 1], sames[i - 1][j]);
+      }
+    return sames.back().back();
+  }
+};
+```
 
 ## Word Break
 
