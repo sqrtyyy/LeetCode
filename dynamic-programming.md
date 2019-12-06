@@ -398,7 +398,7 @@ class Solution {
 
 https://leetcode.com/problems/n-queens-ii/
 
-``C++
+```C++
 class Solution {
  private:
   int size;
