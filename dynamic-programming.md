@@ -392,7 +392,7 @@ class Solution {
     return results;
   }
 };
-``
+```
 
 ## N-Queens II
 
