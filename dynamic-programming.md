@@ -244,6 +244,25 @@ class Solution {
 
 https://leetcode.com/problems/jump-game-ii/
 
+```C++
+class Solution {
+ public:
+  int jump(vector<int>& nums) {
+    int jumpNum = 0, lastReach = 0;
+    int reach = 0;
+    for (int i = 0; i < nums.size() - 1; i++) {
+      if (lastReach >= nums.size() - 1) break;
+      reach = max(reach, i + nums[i]);
+      if (i == lastReach) {
+        jumpNum++;
+        lastReach = reach;
+      }
+    }
+    return jumpNum;
+  }
+};
+```
+
 ## House Robber
 
 https://leetcode.com/problems/house-robber/submissions/
@@ -292,14 +311,132 @@ class Solution {
 
 https://leetcode.com/problems/decode-ways/
 
+```C++
+class Solution {
+ public:
+  int numDecodings(string s) {
+    int prev = 0, cur = 1;
+    for (int i = 0; i < s.length(); i++) {
+      if (s[i] == '0') cur = 0;
+      int tmp = cur + prev;
+      if (!cur && !prev) return 0;
+      if (s[i] == '1' || s[i] == '2' && s[i + 1] <= '6')
+        prev = cur;
+      else
+        prev = 0;
+      cur = tmp;
+    }
+    return cur;
+  }
+};
+```
+
 ## Coin Change 2
 
-https://leetcode.com/problems/decode-ways/
+https://leetcode.com/problems/coin-change-2/
+
+```C++
+class Solution {
+ public:
+  int change(int amount, vector<int>& coins) {
+    vector<int> num(amount + 1);
+    num[0] = 1;
+    for (int i = 0; i < coins.size(); i++)
+      for (int j = coins[i]; j <= amount; j++) num[j] += num[j - coins[i]];
+    return num.back();
+  }
+};
+```
 
 ## N-Queens
 
 https://leetcode.com/problems/n-queens/
+```C++
+class Solution {
+ private:
+  int size;
+  vector<bool> LDiag;
+  vector<bool> RDiag;
+  vector<bool> usedLine;
+  vector<vector<string>> results;
+  vector<string> result;
+
+ public:
+  void putQueen(int column) {
+    if (column == size) {
+      results.push_back(result);
+      return;
+    }
+    for (int line = 0; line < size; line++) {
+      if (!usedLine[line] && !RDiag[line + column] &&
+          !LDiag[column - line + size - 1]) {
+        result[line][column] = 'Q';
+        usedLine[line] = true;
+        RDiag[line + column] = true;
+        LDiag[column - line + size - 1] = true;
+        putQueen(column + 1);
+        result[line][column] = '.';
+        usedLine[line] = false;
+        RDiag[line + column] = false;
+        LDiag[column - line + size - 1] = false;
+      }
+    }
+  }
+  vector<vector<string>> solveNQueens(int n) {
+    result.resize(n, string(n, '.'));
+    LDiag.resize(2 * n - 1, false);
+    RDiag.resize(2 * n - 1, false);
+    usedLine.resize(n, false);
+    size = n;
+    putQueen(0);
+    return results;
+  }
+};
+``
 
 ## N-Queens II
 
 https://leetcode.com/problems/n-queens-ii/
+
+``C++
+class Solution {
+ private:
+  int size;
+  int answer;
+  vector<bool> LDiag;
+  vector<bool> RDiag;
+  vector<bool> usedLine;
+  vector<string> result;
+
+ public:
+  void putQueen(int column) {
+    if (column == size) {
+      answer++;
+      return;
+    }
+    for (int line = 0; line < size; line++) {
+      if (!usedLine[line] && !RDiag[line + column] &&
+          !LDiag[column - line + size - 1]) {
+        result[line][column] = 'Q';
+        usedLine[line] = true;
+        RDiag[line + column] = true;
+        LDiag[column - line + size - 1] = true;
+        putQueen(column + 1);
+        result[line][column] = '.';
+        usedLine[line] = false;
+        RDiag[line + column] = false;
+        LDiag[column - line + size - 1] = false;
+      }
+    }
+  }
+  int totalNQueens(int n) {
+    result.resize(n, string(n, '.'));
+    LDiag.resize(2 * n - 1, false);
+    RDiag.resize(2 * n - 1, false);
+    usedLine.resize(n, false);
+    size = n;
+    putQueen(0);
+    return answer;
+  }
+};
+```
