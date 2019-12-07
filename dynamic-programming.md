@@ -27,10 +27,10 @@ int MaxWeight(int capacity, vector<int>& nums) {
   for (int i = 1; i <= nums.size(); i++) {
     for (int j = 1; j <= capacity; j++) {
       if (nums[i - 1] > j)
-        maxWeight[i][j] = maxWeight[i - 1][j];
+        maxValue[i][j] = maxValue[i - 1][j];
       else
-        maxWeight[i][j] = max(maxWeight[i - 1][j],
-                              maxWeight[i - 1][j - nums[i - 1]] + nums[i - 1]);
+        maxValue[i][j] = max(maxValue[i - 1][j],
+                              maxValue[i - 1][j - nums[i - 1]] + nums[i - 1]);
     }
   }
   return maxValue.back().back();
