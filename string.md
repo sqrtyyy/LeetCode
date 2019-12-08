@@ -42,13 +42,100 @@ class Solution {
 
 https://leetcode.com/problems/longest-repeating-character-replacement/
 
+```C++
+class Solution {
+ public:
+  int characterReplacement(string s, int k) {
+    int maxCount = 0;
+    int left = 0;
+    int count['Z' - 'A' + 1] = {0};
+    int answer = 0;
+    for (int right = 0; right < s.size(); right++) {
+      int windowSize = right - left + 1;
+      maxCount = max(maxCount, ++count[s[right] - 'A']);
+      if (windowSize - maxCount > k) {
+        count[s[left++] - 'A']--;
+      } else {
+        answer = max(answer, windowSize);
+      }
+    }
+    return answer;
+  }
+};
+```
+
 # Minimum Window Substring
 
 https://leetcode.com/problems/minimum-window-substring/
 
+```C++
+class Solution {
+ public:
+  string minWindow(string s, string t) {
+    int tLetters[128] = {0};
+    int curTLetters[128] = {0};
+    for (auto letter : t) {
+      tLetters[letter]++;
+      curTLetters[letter]++;
+    }
+    int tLetNum = t.length();
+    int left = 0;
+    string answer;
+
+    for (int right = 0; right < s.size(); right++) {
+      if (!isInString(tLetters, s[right])) continue;
+      if (!isEnoughString(curTLetters, s[right])) {
+        tLetNum--;
+      }
+      curTLetters[s[right]]--;
+      while (left <= right && tLetNum == 0) {
+        if (!isInString(tLetters, s[left])) {
+          left++;
+          continue;
+        }
+        curTLetters[s[left]]++;
+        if (!isEnoughString(curTLetters, s[left])) {
+          tLetNum++;
+          if (!answer.length() || right - left + 1 < answer.length())
+            answer = s.substr(left, right - left + 1);
+        }
+        left++;
+      }
+    }
+    return answer;
+  }
+  bool isInString(int tLetters[], char symbol) { return tLetters[symbol] != 0; }
+  bool isEnoughString(int tLetters[], char symbol) {
+    return tLetters[symbol] <= 0;
+  }
+};
+```
 # Group Anagrams
 
 https://leetcode.com/problems/group-anagrams/
+
+```C++
+class Solution {
+ public:
+  vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    unordered_map<string, vector<string>> anagrams;
+    for (auto word : strs) {
+      string key = word;
+      sort(key.begin(), key.end());
+      if (anagrams.find(key) != anagrams.end()) {
+        anagrams[key].push_back(word);
+      } else {
+        anagrams.insert(make_pair(key, vector<string>{word}));
+      }
+    }
+    vector<vector<string>> answer;
+    for (auto anagram : anagrams) {
+      answer.push_back(anagram.second);
+    }
+    return answer;
+  }
+};
+```
 
 # Valid Parentheses
 
@@ -79,6 +166,30 @@ class Solution {
 
 https://leetcode.com/problems/generate-parentheses/
 
+```C++
+class Solution {
+ private:
+  vector<string> answer;
+  int amount;
+
+ public:
+  vector<string> generateParenthesis(int n) {
+    amount = n;
+    parenthesisVariants("", 0, 0);
+    return answer;
+  }
+  void parenthesisVariants(string cur, int openNum, int closeNum) {
+    if (cur.length() == 2 * amount) {
+      answer.push_back(cur);
+      return;
+    }
+    if (openNum < amount) parenthesisVariants(cur + "(", openNum + 1, closeNum);
+    if (closeNum < openNum)
+      parenthesisVariants(cur + ")", openNum, closeNum + 1);
+  }
+};
+```
+
 # Valid Palindrome
 
 https://leetcode.com/problems/valid-palindrome/
@@ -104,9 +215,51 @@ class Solution {
 
 https://leetcode.com/problems/longest-palindromic-substring/
 
+```C++
+class Solution {
+ public:
+  string longestPalindrome(string s) {
+    string answer;
+    for (int mid = 0; mid < int(2 * s.length()); mid++) {
+      int left = mid / 2;
+      int right = left + mid % 2;
+      while (left >= 0 && right < s.length() && s[left] == s[right]) {
+        left--;
+        right++;
+      }
+      right--;
+      left++;
+      if (right - left + 1 > answer.length()) {
+        answer = s.substr(left, right - left + 1);
+      }
+    }
+    return answer;
+  }
+};
+```
+
 # Palindromic Substrings
 
 https://leetcode.com/problems/palindromic-substrings/
+
+```C++
+class Solution {
+ public:
+  int countSubstrings(string s) {
+    int answer = 0;
+    for (int mid = 0; mid < 2 * s.length() - 1; mid++) {
+      int left = mid / 2;
+      int right = left + mid % 2;
+      while (left >= 0 && right < s.length() && s[left] == s[right]) {
+        left--;
+        right++;
+        answer++;
+      }
+    }
+    return answer;
+  }
+};
+```
 
 # Is Subsequence
 
